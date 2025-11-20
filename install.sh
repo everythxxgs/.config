@@ -257,6 +257,15 @@ install_oh_my_zsh() {
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     fi
 
+    # Copy custom theme
+    local config_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    if [[ -f "$config_dir/zsh/themes/every.zsh-theme" ]]; then
+        print_info "Installing custom theme..."
+        mkdir -p "$HOME/.oh-my-zsh/custom/themes"
+        cp "$config_dir/zsh/themes/every.zsh-theme" "$HOME/.oh-my-zsh/custom/themes/"
+        print_success "Custom theme installed"
+    fi
+
     print_success "Zsh plugins installed"
 }
 
@@ -367,9 +376,9 @@ setup_symlinks() {
     fi
 
     # Symlink zshrc if exists
-    if [[ -f "$config_dir/.zshrc" ]]; then
+    if [[ -f "$config_dir/zsh/.zshrc" ]]; then
         backup_config "$HOME/.zshrc"
-        ln -sf "$config_dir/.zshrc" "$HOME/.zshrc"
+        ln -sf "$config_dir/zsh/.zshrc" "$HOME/.zshrc"
         print_success "Linked .zshrc configuration"
     fi
 
@@ -386,6 +395,13 @@ setup_shell_integrations() {
     print_header "Setting up shell integrations"
 
     local zshrc="$HOME/.zshrc"
+    local config_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+    # Skip if using custom .zshrc (it already has integrations)
+    if [[ -L "$zshrc" ]] && [[ "$(readlink "$zshrc")" == "$config_dir/zsh/.zshrc" ]]; then
+        print_info "Using custom .zshrc - integrations already configured"
+        return
+    fi
 
     # Ensure .zshrc exists
     touch "$zshrc"
