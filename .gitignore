@@ -1,0 +1,64 @@
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.backup.*
+
+# Node modules (if any configs use them)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+.venv/
+venv/
+ENV/
+
+# Logs
+*.log
+logs/
+
+# Cache directories
+.cache/
+configstore/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# Yarn global (already in repo but can exclude if needed)
+yarn/global/node_modules/
+
+# Claude directories (tool-specific)
+*/.claude/
+
+# Build artifacts
+dist/
+build/
+*.o
+*.a
+*.so
+
+# Temporary files
+tmp/
+temp/
+*.tmp

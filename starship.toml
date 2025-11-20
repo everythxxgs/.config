@@ -1,0 +1,107 @@
+# Starship prompt configuration
+# Documentation: https://starship.rs/config/
+
+# Timeout for starship commands
+command_timeout = 500
+
+# Format of the prompt
+format = """
+[┌─](bold blue)$username$hostname$directory$git_branch$git_status$git_state
+[└─](bold blue)$character"""
+
+# Right prompt
+right_format = """$cmd_duration$time"""
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+vimcmd_symbol = "[←](bold green)"
+
+[username]
+style_user = "bold cyan"
+style_root = "bold red"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[@$hostname]($style) "
+style = "bold cyan"
+disabled = false
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold purple"
+read_only = " 🔒"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch(:$remote_branch)]($style) "
+style = "bold green"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold yellow"
+conflicted = "⚔️ "
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "📦"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+min_time = 500
+format = "⏱ [$duration]($style) "
+style = "bold yellow"
+
+[time]
+disabled = false
+format = "[$time]($style)"
+style = "bold blue"
+time_format = "%T"
+
+[nodejs]
+format = "via [$symbol($version )]($style)"
+symbol = " "
+style = "bold green"
+
+[rust]
+format = "via [$symbol($version )]($style)"
+symbol = " "
+style = "bold red"
+
+[python]
+format = 'via [$symbol$pyenv_prefix($version )(\($virtualenv\) )]($style)'
+symbol = " "
+style = "bold yellow"
+
+[lua]
+format = "via [$symbol($version )]($style)"
+symbol = " "
+style = "bold blue"
+
+[golang]
+format = "via [$symbol($version )]($style)"
+symbol = " "
+style = "bold cyan"
+
+[docker_context]
+format = "via [$symbol$context]($style) "
+symbol = " "
+style = "bold blue"
+
+[package]
+format = "[$symbol$version]($style) "
+symbol = "📦 "
+style = "bold yellow"
