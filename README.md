@@ -62,7 +62,7 @@ In visual environments, the following Nerd Fonts are installed:
 
 1. Clone this repository:
 ```bash
-git clone <your-repo-url> ~/.config
+git clone https://github.com/everythxxgs/.config ~/.config
 cd ~/.config
 ```
 
